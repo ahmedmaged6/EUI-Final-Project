@@ -1,4 +1,4 @@
-# Generate a private key
+# Generate a private key and public key
 resource "tls_private_key" "ec2_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -32,7 +32,7 @@ resource "aws_security_group" "allow_web" {
 
   ingress {
     description = "SSH"
-    from_port   = 22
+    from_port   = 22    
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
@@ -53,12 +53,11 @@ resource "aws_security_group" "allow_web" {
 
 # Create Jenkins EC2 instance
 resource "aws_instance" "jenkins" {
-  ami           = var.ec2-ubuntu-ami
+  ami           = "ami-084568db4383264d4"
   instance_type = "t2.medium"
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name = aws_key_pair.ec2_key.key_name
   user_data = file("${path.module}/ec2-userdata/jenkins-userdata.sh")
-  #user_data_replace_on_change = true
   tags = {
     Name = "jenkins-ec2"
   }
@@ -66,7 +65,7 @@ resource "aws_instance" "jenkins" {
 
 # Create Webserver EC2 instance
 resource "aws_instance" "webserver" {
-  ami           = var.ec2-ubuntu-ami
+  ami           = "ami-084568db4383264d4"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name = aws_key_pair.ec2_key.key_name
