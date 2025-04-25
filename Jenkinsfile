@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_HUB_REPO = 'ahmedmaged6/petstore'
-        TARGET_SERVER_IP = '52.204.206.135'
+        TARGET_SERVER_IP = '52.22.27.196'
         DOCKER_CREDENTIALS = credentials('docker_credentials') // Binds to DOCKER_CREDENTIALS_USR and DOCKER_CREDENTIALS_PSW
         SSH_KEY = credentials('ssh_key') 
     }
