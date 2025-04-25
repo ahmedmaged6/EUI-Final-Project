@@ -12,3 +12,4 @@
 ec2-key-pair.pem
 .terraform*
 Jenkinsfile-credentials
+terraform.tfstate
