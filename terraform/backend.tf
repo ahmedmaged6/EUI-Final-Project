@@ -4,6 +4,7 @@ terraform {
     key            = "terraform/state.tfstate"  
     region         = "us-east-1"  
     profile        = "iamadmin-dev"
+    
   }
 }
 
