@@ -53,7 +53,7 @@ resource "aws_security_group" "allow_web" {
 
 # Create Jenkins EC2 instance
 resource "aws_instance" "jenkins" {
-  ami           = "ami-084568db4383264d4"
+  ami           = "ami-004364947f82c87a0"
   instance_type = "t2.medium"
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name = aws_key_pair.ec2_key.key_name
@@ -65,7 +65,7 @@ resource "aws_instance" "jenkins" {
 
 # Create Webserver EC2 instance
 resource "aws_instance" "webserver" {
-  ami           = "ami-084568db4383264d4"
+  ami           = "ami-004364947f82c87a0"
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.allow_web.id]
   key_name = aws_key_pair.ec2_key.key_name
